@@ -1,0 +1,47 @@
+<h4 class="m-5 w-25 bg-light text-center">商品詳細</h4>
+<br>
+<div class="container">
+  <div class="row aline-items-center m-5">
+    <div class="col-lg text-center mb-5">
+
+    </div>
+    <div class="col-lg">
+      <%= image_tag @item.image, size: '400x250' %>
+    </div>
+    <table class="table">
+      <tr>
+        <th>商品名</th>
+        <td><%= @item.name %></td>
+      </tr>
+      <tr>
+        <th>商品説明</th>
+        <td><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <th>ジャンル</th>
+        <td><%= @item.genre.name %></td>
+      </tr>
+      <tr>
+        <th>
+            税込価格<br>
+            (税抜き価格)
+        </th>
+        <td><%= @item.add_tax_sales_price.to_s(:dalimited) %> (<%= @item.price %>) 円</td>
+      </tr>
+      <tr>
+        <th>販売ステータス</th>
+        <td>
+          <% if @item.is_active == true %>
+            <p class="text-success ">販売中</p>
+          <% else %>
+            <p class="text-secondary ">販売停止中</p>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+　　<div class="d-flex justify-content-around">
+      <p><%= link_to '編集する', edit_admin_item_path(@item.id), class: 'btn btn-success' %></p>
+      <p><%= link_to "商品一覧へ戻る", admin_items_path, class:"btn btn-outline-secondary"%></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<h4 class="m-5 w-25 bg-light text-center">管理者ログイン</h4>
+
+<div class="container">
+  <div class="row justify-content-evenly">
+    <div class="col-lg-8">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :メールアドレス %>&ensp;&ensp;&ensp;&ensp;
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "sample@example.com", size: 40 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :パスワード %>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+        <%= f.password_field :password, autocomplete: "current-password", size: 40 %>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <%= f.submit "ログイン", class: 'btn btn-primary btn-blok' %>
+      </div>
+    <% end %>
+
+    <%= render "admin/shared/links" %>
+    </div>
+  </div>
+</div>
