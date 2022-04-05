@@ -7,7 +7,7 @@
 
     </div>
     <div class="col-lg">
-      <%= image_tag @item.get_image, size: '400x250' %>
+      <%= image_tag @item.get_image, size: '400x320' %>
     </div>
     <table class="table">
       <tr>
@@ -42,7 +42,6 @@
     </table>
 　　<div class="d-flex justify-content-around">
       <p><%= link_to '編集する', edit_admin_item_path(@item.id), class: 'btn btn-success' %></p>
-      <p><%= link_to "商品一覧へ戻る", admin_items_path, class:"btn btn-outline-secondary"%></p>
     </div>
   </div>
 </div>
