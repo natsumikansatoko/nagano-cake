@@ -1,2 +1,41 @@
-<h1>Admin::Customers#index</h1>
-<p>Find me in app/views/admin/customers/index.html.erb</p>
+<h4 class="m-5 w-25 bg-light text-center">会員一覧</h4>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+          <tbody>
+            <% @customers.each do |customer| %>
+              <tr>
+                <td class="aline-middle">
+                  <%= customer.id %>
+                </td>
+                <td class="aline-middle">
+                  <%= link_to customer.full_name, admin_customer_path(customer) %>
+                </td>
+                <td class="aline-middle">
+                  <%= customer.email %>
+                </td>
+                <td class="aline-middle">
+                  <% if customer.is_active == true %>
+                    <p class="text-secondary">退会</p>
+                  <% else %>
+                    <p class="text-success">有効</p>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center"><%= paginate(@customers)%></div>
+</div>

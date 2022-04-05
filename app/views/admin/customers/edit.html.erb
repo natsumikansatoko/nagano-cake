@@ -1,2 +1,63 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<h4 class="m-5 w-25 bg-light text-center">
+  <%= @customer.last_name %>
+  <%= @customer.first_name %>
+  さんの会員情報編集
+</h4>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10">
+      <%= form_with model: @customer, url: admin_customer_path, local:true do |f| %>
+        <table class="table">
+          <tr>
+            <th class="text-left">会員ID</th>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <th class="text-left">氏名</th>
+            <td>
+              <%= f.text_field :last_name %>
+              <%= f.text_field :first_name %>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-left">フリガナ</th>
+            <td>
+              <%= f.text_field :last_name_kana %>
+              <%= f.text_field :first_name_kana %>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-left">郵便番号</th>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <th class="text-left">住所</th>
+            <td><%= f.text_field :address, size: 42 %></td>
+          </tr>
+          <tr>
+            <th class="text-left">電話番号</th>
+            <td><%= f.text_field :telephone_number %></td>
+          </tr>
+          <tr>
+            <th class="text-left">メールアドレス</th>
+            <td><%= f.text_field :email %></td>
+          </tr>
+          <tr>
+            <th class="text-left">会員ステータス</th>
+            <td><%= f.radio_button :is_active, true, checked: true %>
+              <%= f.label :is_active, "有効" %>
+              <%= f.radio_button :is_active, false %>
+              <%= f.label :is_active, "退会" %>
+            </td>
+          </tr>
+          <tr>
+            <div class="form-action">
+              <th><%= f.submit "変更を保存", class:"btn btn-success" %></th>
+            </div>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

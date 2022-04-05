@@ -60,3 +60,11 @@ gem 'devise'
 gem 'refile'
 
 gem 'kaminari'
+
+group :development, :test do
+  gem 'faker'
+end
+
+gem 'faker'
+
+gem 'gimei'

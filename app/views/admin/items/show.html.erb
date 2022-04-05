@@ -1,12 +1,13 @@
 <h4 class="m-5 w-25 bg-light text-center">商品詳細</h4>
 <br>
+
 <div class="container">
   <div class="row aline-items-center m-5">
     <div class="col-lg text-center mb-5">
 
     </div>
     <div class="col-lg">
-      <%= image_tag @item.image, size: '400x250' %>
+      <%= image_tag @item.get_image, size: '400x250' %>
     </div>
     <table class="table">
       <tr>
