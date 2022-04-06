@@ -68,3 +68,5 @@ end
 gem 'faker'
 
 gem 'gimei'
+
+gem 'enum_help'

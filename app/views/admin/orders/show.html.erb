@@ -27,15 +27,18 @@
             <tr>
               <th>注文ステータス</th>
               <td>
-
+                <%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
+                <%= f.select :order_status, Order.order_statuses.keys, class: "order_status" %>
+                <%= f.submit '更新', class: "btn btn-sm btn-success" %>
+                <% end %>
               </td>
            </tr>
          </thead>
      </table>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-xs-8">
+  <div class="row">
+    <div class="col-sm-8">
       <table class="table">
         <thead class="thead-light">
           <tr>
@@ -54,17 +57,18 @@
               <td><p><%= order_item.item_count %></p></td>
               <td><p><%= order_item.item.add_tax_sales_price * order_item.item_count %></p></td>
               <td>
-                <%= form_with(model: order_item, url: admin_order_item_path(order_item.id),method: :patch, local: true) do |f| %>
-                <%=  %>
-                <%= f.submit "更新", class:"btn btn-success" %>
+                <%= form_with model: order_item, url: admin_order_item_path(order_item.id), method: :patch, local: true do |f| %>
+                <%= f.select :making_status, OrderItem.making_statuses.keys, class: "making_status" %>
+                <%= f.submit "更新", class:"btn btn-sm btn-success" %>
                 <% end %>
               </td>
             </tr>
             <% end %>
         </tbody>
       </table>
-      <div class="col-xs-3 off-set-1">
-      <table class="table">
+    </div>
+    <div class="col-sm-4">
+      <table class="table table-borderless" style="width:50%">
           <tr>
             <th>商品合計</th>
             <td class="text-right col-xs-5"><%= @order.amount_billed%>円</td>
@@ -78,7 +82,6 @@
             <td class="text-right col-xs-5"><%= @order.amount_billed + @order.shipping_fee %>円</td>
           </tr>
       </table>
-      </div>
     </div>
   </div>
 </div>
