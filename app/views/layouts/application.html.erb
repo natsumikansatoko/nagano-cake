@@ -22,7 +22,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if customer_signed_in? %>
-          
+          <li class="nav-item">
+            <%= link_to "商品一覧", items_path, class: 'btn btn-outline-dark' %>&ensp;&ensp;
+          </li>
           <% else %>
           <li class="nav-item">
             <%= link_to "About", about_path, class: 'btn btn-outline-dark' %>&ensp;&ensp;

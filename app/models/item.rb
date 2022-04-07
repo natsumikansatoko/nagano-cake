@@ -4,6 +4,10 @@ class Item < ApplicationRecord
   has_many :order_items
   belongs_to :genre
 
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :price, presence: true
+
   def add_tax_sales_price
     (self.price * 1.10).round
   end

@@ -3,6 +3,14 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-10 px-sm-0 mx-auto mb-5">
+      <% if @item.errors.any? %>
+        <%= @item.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
       <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
         <table>
           <tr>
