@@ -24,9 +24,12 @@
                 <%= order.customer.last_name + order.customer.first_name %>
               </td>
               <td>
+                <% @total_amout = 0 %>
                 <% order.order_items.each do |order_item| %>
-                <%= order_item.item_count %>
+                <% @total_amout += order_item.amount %>
                 <% end %>
+                <%= @total_amout %>
+              
               <td>
                 <%= order.order_status %>
               </td>

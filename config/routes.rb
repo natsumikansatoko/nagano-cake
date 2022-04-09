@@ -22,9 +22,14 @@ Rails.application.routes.draw do
     root 'homes#top'
     get '/about' => 'homes#about'
     resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdrawal]
-    resources :cart_items, only: [:index, :update, :delete, :delete_all, :create]
-    resources :orders, only: [:new, :confirm, :create, :thanks, :index, :show]
+    resource :customers, only: [:show, :edit, :update]
+    get '/customers/unsubscribe' => 'customers#unsubscribe'
+    patch '/customers/withdrawal' => 'customers#withdrawal'
+    resources :cart_items, only: [:index, :update, :delete, :create]
+    delete '/cart_items/delete_all' => 'cart_items#delete_all'
+    resources :orders, only: [:new, :create, :index, :show]
+    get '/orders/thanks' => 'orders#thanks'
+    post '/orders/confirm' => 'orders#confirm'
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
