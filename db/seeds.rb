@@ -27,6 +27,7 @@ Admin.create!(
 end
 
 Customer.create!(
+  id: 21,
   last_name: "佐藤",
   first_name: "菜々子",
   last_name_kana: "サトウ",
@@ -39,7 +40,21 @@ Customer.create!(
   is_active: true
   )
 
-Genre.create!(
+  Address.create!(
+    customer_id: 21,
+    postal_code: "2440812",
+    address: "神奈川県横浜市戸塚区柏尾町3-9-10",
+    name: "梅木匠"
+  )
+
+  Address.create!(
+    customer_id: 21,
+    postal_code: "4001114",
+    address: "山梨県甲斐市打返4-15-19",
+    name: "小沢時男"
+  )
+
+  Genre.create!(
      name: "ケーキ",
   )
 
