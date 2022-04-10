@@ -8,8 +8,8 @@ class Item < ApplicationRecord
   validates :introduction, presence: true
   validates :price, presence: true
 
-  def add_tax_sales_price
-    (self.price * 1.10).round
+  def with_tax_price
+    (price * 1.1).floor
   end
 
   def get_image

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     get '/customers/unsubscribe' => 'customers#unsubscribe'
     patch '/customers/withdrawal' => 'customers#withdrawal'
     resources :cart_items, only: [:index, :update, :delete, :create]
+    delete '/cart_items/:id' => 'cart_items#delete'
     delete '/cart_items/delete_all' => 'cart_items#delete_all'
     resources :orders, only: [:new, :create, :index, :show]
     get '/orders/thanks' => 'orders#thanks'

@@ -16,15 +16,25 @@ class Public::AddressesController < ApplicationController
     if @address.save
       redirect_to addresses_path
     else
-      @customer = current_customer
-      @addresses = @customer.addresses
-      render :edit
+      @addresses = current_customer.addresses
+      render :index
     end
   end
 
   def update
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      redirect_to addresses_path
+    else
+      render :edit
+    end
   end
 
   def destroy
+  end
+  
+  private
+  def address_params
+    params.require(:address).permit(:name, :postal_code, :address)
   end
 end
