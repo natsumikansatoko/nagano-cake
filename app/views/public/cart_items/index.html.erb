@@ -63,7 +63,7 @@
       <table class="table table-bordered">
         <tr>
           <th class="table active" style="width:50%" >合計金額</th>
-          <td style="width:50%"><%= @customer.total_price.to_s(:delimited, delimiter: ',') %></td>
+          <td style="width:50%"><%= total_price(@cart_items).to_s(:delimited, delimiter: ',') %></td>
         </tr>
       </table>
     </div>

@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @cart_items = CartItem.where(customer_id: current_customer)
+    @cart_items = CartItem.where(customer: current_customer)
     @customer = Customer.find(current_customer.id)
   end
 

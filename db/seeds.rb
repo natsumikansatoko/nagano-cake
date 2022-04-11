@@ -116,7 +116,7 @@ Customer.create!(
   )
 
 
-  15.times do |n|
+  21.times do |n|
     Order.create!(
       customer_id: n + 1,
       delivery_postal_code: "123456#{n + 1}",
@@ -129,7 +129,7 @@ Customer.create!(
     )
   end
 
-  15.times do |n|
+  21.times do |n|
     OrderItem.create!(
       item_id: n + 1,
       order_id: n + 1,
