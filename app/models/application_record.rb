@@ -12,4 +12,5 @@ class ApplicationRecord < ActiveRecord::Base
     end
     return price
   end
+
 end

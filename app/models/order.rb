@@ -8,10 +8,15 @@ class Order < ApplicationRecord
     order_items.to_a.sum { |item| item.total_price }
   end
 
-  
+  def with_tax_price(cart_item)
+    (price * 1.1).floor
+  end
 
   enum payment_method: { クレジットカード: 0, 銀行振込: 1 }
   enum order_status: { 入金待ち: 0, 入金確認: 1, 製作中: 2, 発送準備中: 3, 発送済み: 4 }
 
+  def shipping_fee
+   self.shipping_fee = 800
+  end
 
 end

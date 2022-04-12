@@ -18,9 +18,9 @@ class Public::OrdersController < ApplicationController
 
     elsif params[:order][:address_option] == "1"
       ship = Address.find(params[:order][:address_id])
-      @order.postal_code = ship.postal_code
-      @order.address = ship.address
-      @order.name = ship.name
+      @order.delivery_postal_code = ship.postal_code
+      @order.delivery_address = ship.address
+      @order.delivery_name = ship.name
 
     elsif params[:order][:my_address] == "2"
       @order.postal_code = params[:order][:postal_code]
@@ -37,6 +37,22 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    @order = current_customer.orders.new(order_params)
+    @order.save
+    if params[:order][:ship] == "1"
+      current_customer.address.create(address_params)
+    end
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      @order_item = OrderItem.new
+      @order_item.item_id = cart_item.item_id
+      @order_item.order_id = @order.id
+      @order_item.item_count = cart_item.amount
+      @order_item.ordered_price = cart_item.item.price * cart_item.amount
+      @order_item.save
+    end
+    @cart_items.destroy_all
+    redirect_to orders_thanks_path
   end
 
   def thanks
