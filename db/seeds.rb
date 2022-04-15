@@ -116,20 +116,33 @@ Customer.create!(
   )
 
 
-  21.times do |n|
+  5.times do |n|
     Order.create!(
       customer_id: n + 1,
-      delivery_postal_code: "123456#{n + 1}",
-      delivery_address: "東京都千代田区二番町1-1 #{n + 1}",
-      delivery_name: "test#{n + 1}",
+      postal_code: "123456#{n + 1}",
+      address: "東京都千代田区二番町1-1 #{n + 1}",
+      name: "test#{n + 1}",
       shipping_fee: "800",
       amount_billed: "#{1000 + (n * 1000) +800}",
       payment_method: "クレジットカード",
       order_status: "入金待ち"
     )
   end
+  
+  Order.create!(
+      customer_id: 21,
+      postal_code: "123456",
+      address: "東京都千代田区二番町1-1",
+      name: "test",
+      shipping_fee: "800",
+      amount_billed: "1000 + 800",
+      payment_method: "クレジットカード",
+      order_status: "入金待ち"
+    )
+  
+  
 
-  21.times do |n|
+  5.times do |n|
     OrderItem.create!(
       item_id: n + 1,
       order_id: n + 1,
@@ -138,3 +151,10 @@ Customer.create!(
       making_status: "着手不可"
     )
   end
+  
+  OrderItem.create!(
+      item_id: 5,
+      order_id: 6,
+      item_count: 3,
+      making_status: "着手不可"
+    )

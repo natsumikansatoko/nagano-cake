@@ -4,10 +4,6 @@ class Order < ApplicationRecord
   has_many :items
 
 
-  def total_price
-    order_items.to_a.sum { |item| item.total_price }
-  end
-
   def with_tax_price(cart_item)
     (price * 1.1).floor
   end

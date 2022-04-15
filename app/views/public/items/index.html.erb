@@ -16,7 +16,7 @@
         <div class="card-body">
           <p class="card-text"><%= item.name %></p>
           <% if item.is_active == true %>
-          <p class="card-text">¥<%= item.price %></p>
+          <p class="card-text">¥<%= item.price.to_s(:delimited) %></p>
           <% else %>
           <p class="card-text text-danger">販売停止中</p>
           <% end %>

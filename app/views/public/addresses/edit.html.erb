@@ -2,7 +2,7 @@
   <h4 class="m-5 w-25 bg-light text-center">配送先編集</h4>
   <div class="row">
     <div class="col-sm-12 px-sm-0 offset-sm-1">
-    <%= form_with model: @address, local: true do |f| %>
+    <%= form_with model: @address, url: address_path, local: true do |f| %>
       <table class="table-borderless">
         <tbody>
           <tr>
