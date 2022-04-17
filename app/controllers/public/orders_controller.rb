@@ -7,9 +7,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @cart_items =current_customer.cart_items
-    @order = Order.new(customer: current_customer,
-                       payment_method: params[:order][:payment_method])
+    @order = Order.new(order_params)
 
     if params[:order][:address_option] == "0"
       @order.postal_code = current_customer.postal_code
@@ -17,41 +15,39 @@ class Public::OrdersController < ApplicationController
       @order.name = current_customer.last_name + current_customer.first_name
 
     elsif params[:order][:address_option] == "1"
-      ship = Address.find(params[:order][:address_id])
-      @order.postal_code = ship.postal_code
-      @order.address = ship.address
-      @order.name = ship.name
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
 
-    elsif params[:order][:my_address] == "2"
+    elsif params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
-      @order.adderss = params[:order][:address]
+      @order.address = params[:order][:address]
       @order.name = params[:order][:name]
-      @ship = "1"
 
-      unless @order.valid? == true
-        @addresses = Address.where(customer: current_customer)
-        render :new
-      end
+    else
+      render :new
     end
+
+    @cart_items = current_customer.cart_items.all
+    @order.customer_id = current_customer.id
 
   end
 
   def create
     @order = current_customer.orders.new(order_params)
-    @order.save
-      if params[:order][:ship] == "1"
-        current_customer.address.create(address_params)
-      end
-    @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-      @order_item = OrderItem.new
+    @order.save!
+
+    current_customer.cart_items.all.each do |cart_item|
+      @order_item = @order.order_items.new
       @order_item.item_id = cart_item.item_id
       @order_item.order_id = @order.id
-      @order_item.item_count = cart_item.amount
-      @order_item.price = cart_item.item.price * cart_item.amount
+      @order_item.amount = cart_item.amount
+      @order_item.ordered_price = cart_item.item.price * cart_item.amount
       @order_item.save
-      end
-    @cart_items.destroy_all
+      current_customer.cart_items.destroy_all
+    end
+
     redirect_to orders_thanks_path
   end
 

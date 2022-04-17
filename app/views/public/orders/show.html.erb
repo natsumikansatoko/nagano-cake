@@ -67,9 +67,9 @@
         <% @order_items.each do |order_item| %>
           <tr>
             <td><%= order_item.item.name %></td>
-            <td><%= order_item.item.with_tax_price %></td>
-            <td><%= order_item.item_count %></td>
-            <td><%= (order_item.item.with_tax_price * order_item.item_count).to_s(:delimited) %></td>
+            <td><%= order_item.item.with_tax_price.to_s(:delimited) %></td>
+            <td><%= order_item.amount %></td>
+            <td><%= (order_item.item.with_tax_price * order_item.amount).to_s(:delimited) %></td>
           </tr>
         <% end %>
         </tbody>

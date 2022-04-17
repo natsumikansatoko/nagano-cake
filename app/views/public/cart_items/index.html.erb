@@ -3,14 +3,7 @@
     <div class="col-sm-4 px-sm-0">
       <h4 class="bg-light text-center">ショッピングカート</h4>
     </div>
-    <% if @cart_items.empty? %>
-      <div style="height: 200px;"></div>
-      <div class="text-center">
-        <h2>カートに商品が入っておりません</h2>
-      </div>
-    <div style="height: 200px;"></div>
 
-    <% else %>
     <div class="ml-auto">
       <%= link_to "カートを空にする", cart_items_delete_all_path, method: :delete, date: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn btn-danger" %>
     </div>
@@ -51,7 +44,6 @@
         </table>
 
       </div>
-    <% end %>
     </div>
   </div>
   <div class="row">

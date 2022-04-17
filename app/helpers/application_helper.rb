@@ -4,9 +4,9 @@ module ApplicationHelper
   end
 
   def sub_price(sub)
-    sub.ite.with_tax_price * sub.amount
+    sub.item.with_tax_price * sub.amount
   end
-  
+
   def total_price(totals)
     price = 0
     totals.each do |total|
@@ -14,4 +14,5 @@ module ApplicationHelper
     end
     return price
   end
+
 end

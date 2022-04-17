@@ -18,12 +18,13 @@ class Public::CartItemsController < ApplicationController
   def delete
     @cart_item = CartItem.find(params[:id])
     @cart_item.delete
-    redirect_back(fallback_location: root_path)
+    redirect_to cart_items_path
   end
 
   def delete_all
-    CartItem.where(customer_id: current_customer.id).delete_all
-    redirect_back(fallback_location: root_path)
+    @cart_items = current_customer.cart_items
+    @cart_items.delete_all
+    redirect_to cart_items_path
   end
 
   def create
