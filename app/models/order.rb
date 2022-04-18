@@ -3,6 +3,10 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :items
 
+  validates :customer_id, :address, :name, :shipping_fee,
+            :payment_method, presence: true
+  validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
+
 
   def with_tax_price(cart_item)
     (price * 1.1).floor
