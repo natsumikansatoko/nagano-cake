@@ -10,6 +10,9 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order)
     if @order.update(order_status_params)
+      if @order.order_status.include?("入金確認")
+        @order_items.update(making_status: 1)
+      end
       redirect_to admin_order_path(@order)
     else
       render :show

@@ -1,6 +1,15 @@
-<h4 class="m-5 w-25 bg-light text-center">商品一覧</h4>
-<br>
+
 <div class="container">
+  <div class="row">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <h4 class="m-5 w-25 bg-light text-center">商品一覧</h4>
+    </div>
+    <div class="col-sm-2 px-sm-0 text-right mt-5">
+      <%= link_to new_admin_item_path do %>
+      <i class="fa fa-plus-circle"></i>
+      <% end %>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-10">
       <table class="table">
@@ -39,7 +48,7 @@
   </div>
   <div class="row">
     　<div class="col-sm-10 offset-1">
-          <%= paginate @items %>
-        </div>
+        <%= paginate @items %>
+      </div>
     </div>
 </div>

@@ -44,6 +44,8 @@ class Public::OrdersController < ApplicationController
       @order_item.order_id = @order.id
       @order_item.amount = cart_item.amount
       @order_item.ordered_price = cart_item.item.price * cart_item.amount
+      @order_item.making_status = 0
+      @order.order_status = 0
       @order_item.save
       current_customer.cart_items.destroy_all
     end
