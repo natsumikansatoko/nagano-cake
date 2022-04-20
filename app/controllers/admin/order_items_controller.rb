@@ -7,14 +7,12 @@ class Admin::OrderItemsController < ApplicationController
     @order = @order_item.order
 
     if @order_item.making_status == "製作中"
-      @order.update(status: 2)
-      flash[:notice] = "制作ステータスの更新しました。"
+      @order.update(order_status: 2)
       @order.save
     end
 
     if @order.order_items.count == @order.order_items.where(making_status: 3).count
-      @order.update(status: 3)
-      flash[:notice] = "制作ステータスの更新しました。"
+      @order.update(order_status: 3)
       @order.save
     end
 
